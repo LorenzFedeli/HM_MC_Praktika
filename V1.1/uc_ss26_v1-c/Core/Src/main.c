@@ -120,25 +120,28 @@ int main(void)
 
 	  //Logik Fälle Tabelle 5 (Y LED Steuern)
 
-	  if(x5==0&&x6==0){
-		  y=0;
-	  }
-	  else if(x5==0&&x6==1&&(x1==1 ||x2==1 || x3==1 || x4==1)){
-		  y = 1;
-	  }
-	  else if(x1==0&&x2==0&&x3==0&&x4==0&&x5==0&&x6==1) {
-		  y=0;
-	  }else if(x1==1&&x2==1&&x3==1&&x4==1&&x5==1&&x6==0) {
-		  y=1;
-	  }else if(x5==1&&x6==0&&(x1==0 ||x2==0 || x3==0 || x4==0)){
-		  y = 0;
-	  }else if(x5==1&&x6==1){
-		  if(x1!=x4){
-			  y=0;
-		  }else{
-			  y=1;
-		  }
-	  }
+	  if (x5 == 0 && x6 == 0) {
+    y = 0;
+}
+else if (x5 == 0 && x6 == 1 && (x1 == 1 || x2 == 1 || x3 == 1 || x4 == 1)) {
+    y = 1;
+}
+else if (x1 == 0 && x2 == 0 && x3 == 0 && x4 == 0 && x5 == 0 && x6 == 1) {
+    y = 0;
+}
+else if (x1 == 1 && x2 == 1 && x3 == 1 && x4 == 1 && x5 == 1 && x6 == 0) {
+    y = 1;
+}
+else if (x5 == 1 && x6 == 0 && (x1 == 0 || x2 == 0 || x3 == 0 || x4 == 0)) {
+    y = 0;
+}
+else if (x5 == 1 && x6 == 1) {
+    if (x1 != x4) {
+        y = 1;
+    } else {
+        y = 0;
+    }
+}
 
 	  HAL_GPIO_WritePin(Y_GPIO_Port, Y_Pin, y ? GPIO_PIN_SET : GPIO_PIN_RESET);
 
