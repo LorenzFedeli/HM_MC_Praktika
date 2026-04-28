@@ -97,25 +97,25 @@ int main(void)
 
 	  //Varaiabeln Definition und Deklaration
 
-	  GPIO_PinState yLedState;
 	  uint8_t y;
-	  uint8_t x1 = (HAL_GPIO_ReadPin(X1_GPIO_Port, X1_Pin)== GPIO_PIN_SET);
-	  uint8_t x2 = (HAL_GPIO_ReadPin(X2_GPIO_Port, X2_Pin)== GPIO_PIN_SET);
-	  uint8_t x3 = (HAL_GPIO_ReadPin(X3_GPIO_Port, X3_Pin)== GPIO_PIN_SET);
-	  uint8_t x4 = (HAL_GPIO_ReadPin(X4_GPIO_Port, X4_Pin)== GPIO_PIN_SET);
-	  uint8_t x5 = (HAL_GPIO_ReadPin(X5_GPIO_Port, X5_Pin)== GPIO_PIN_SET);
-	  uint8_t x6 = (HAL_GPIO_ReadPin(X6_GPIO_Port, X6_Pin)== GPIO_PIN_SET);
+	  uint8_t x1 = (HAL_GPIO_ReadPin(X1_GPIO_Port, X1_Pin) == GPIO_PIN_RESET);
+	  uint8_t x2 = (HAL_GPIO_ReadPin(X2_GPIO_Port, X2_Pin) == GPIO_PIN_RESET);
+	  uint8_t x3 = (HAL_GPIO_ReadPin(X3_GPIO_Port, X3_Pin) == GPIO_PIN_RESET);
+	  uint8_t x4 = (HAL_GPIO_ReadPin(X4_GPIO_Port, X4_Pin) == GPIO_PIN_RESET);
+	  uint8_t x5 = (HAL_GPIO_ReadPin(X5_GPIO_Port, X5_Pin) == GPIO_PIN_RESET);
+	  uint8_t x6 = (HAL_GPIO_ReadPin(X6_GPIO_Port, X6_Pin) == GPIO_PIN_RESET);
+
 
 	  //SW3 für die LEDs X1 - X4
 
 	  //LED 1
-	  HAL_GPIO_WritePin(LV1_GPIO_Port, LV1_Pin,!HAL_GPIO_ReadPin(X1_GPIO_Port, X1_Pin));
+	  HAL_GPIO_WritePin(LV1_GPIO_Port, LV1_Pin, x1 ? GPIO_PIN_SET : GPIO_PIN_RESET);
 	  //LED 2
-	  HAL_GPIO_WritePin(LV2_GPIO_Port, LV2_Pin,!HAL_GPIO_ReadPin(X2_GPIO_Port, X2_Pin));
+	  HAL_GPIO_WritePin(LV2_GPIO_Port, LV2_Pin, x2 ? GPIO_PIN_SET : GPIO_PIN_RESET);
 	  //LED 3
-	  HAL_GPIO_WritePin(LV3_GPIO_Port, LV3_Pin,!HAL_GPIO_ReadPin(X3_GPIO_Port, X3_Pin));
+	  HAL_GPIO_WritePin(LV3_GPIO_Port, LV3_Pin, x3 ? GPIO_PIN_SET : GPIO_PIN_RESET);
 	  //LED 4
-	  HAL_GPIO_WritePin(LV4_GPIO_Port, LV4_Pin,!HAL_GPIO_ReadPin(X4_GPIO_Port, X4_Pin));
+	  HAL_GPIO_WritePin(LV4_GPIO_Port, LV4_Pin, x4 ? GPIO_PIN_SET : GPIO_PIN_RESET);
 
 
 	  //Logik Fälle Tabelle 5 (Y LED Steuern)
@@ -140,16 +140,7 @@ int main(void)
 		  }
 	  }
 
-	  //Y LED an/aus Logik
-
-	  if(y==1){
-		  yLedState = GPIO_PIN_SET ;
-	  }else{
-		  yLedState = GPIO_PIN_RESET;
-	  }
-
-
-	  HAL_GPIO_WritePin(Y_GPIO_Port, Y_Pin, yLedState);
+	  HAL_GPIO_WritePin(Y_GPIO_Port, Y_Pin, y ? GPIO_PIN_SET : GPIO_PIN_RESET);
 
 
     /* USER CODE END WHILE */
